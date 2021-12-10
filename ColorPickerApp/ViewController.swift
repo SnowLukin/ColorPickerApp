@@ -20,14 +20,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var greenColorSlider: UISlider!
     @IBOutlet weak var blueColorSlider: UISlider!
     
+    @IBOutlet weak var resetButton: UIButton!
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        redColorSlider.minimumTrackTintColor = .red
+        greenColorSlider.minimumTrackTintColor = .green
+        blueColorSlider.minimumTrackTintColor = .systemBlue
+        
         pickedColorView.layer.cornerRadius = 20
         
-        setStarterSettings(firstValue: 0.05, secondValue: 0.27, thirdValue: 0.49)
+        resetButton.setTitle("Reset", for: .normal)
+        resetButton.setTitleColor(.white, for: .normal)
+        resetButton.backgroundColor = .systemRed
+        resetButton.layer.cornerRadius = 10
         
+        setStarterSettings(firstValue: 0.05, secondValue: 0.27, thirdValue: 0.49)
     }
     
     // MARK: - IBActions
@@ -39,21 +49,21 @@ class ViewController: UIViewController {
                                                   alpha: 1)
     }
     
+    @IBAction func resetToStarterSetting() {
+        setStarterSettings(firstValue: 0.05, secondValue: 0.27, thirdValue: 0.49)
+    }
+    
     // MARK: - Pravite Methods
     private func setStarterSettings(firstValue: Float, secondValue: Float, thirdValue: Float) {
         
         redColorSlider.value = firstValue
-        redColorSlider.minimumTrackTintColor = .red
         redValue.text = String(redColorSlider.value)
         
         greenColorSlider.value = secondValue
-        greenColorSlider.minimumTrackTintColor = .green
         greenValue.text = String(greenColorSlider.value)
         
         blueColorSlider.value = thirdValue
-        blueColorSlider.minimumTrackTintColor = .systemBlue
         blueValue.text = String(blueColorSlider.value)
-
         
         pickedColorView.backgroundColor = UIColor(red: CGFloat(firstValue),
                                                   green: CGFloat(secondValue),
