@@ -17,14 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFi-hf-EqB">
-                                <rect key="frame" x="45" y="144" width="324" height="148"/>
+                                <rect key="frame" x="45" y="157" width="324" height="148"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jFi-hf-EqB" secondAttribute="height" multiplier="81:37" id="He0-5e-FSQ"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="3iJ-CR-x4T">
-                                <rect key="frame" x="20" y="392" width="374" height="120"/>
+                                <rect key="frame" x="20" y="405" width="374" height="120"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NPl-Ph-TSC">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="120"/>
@@ -78,36 +78,28 @@
                                             <constraint firstAttribute="width" constant="50" id="9Ib-Tn-ddB"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ImL-yo-W2w">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ImL-yo-W2w">
                                         <rect key="frame" x="125" y="0.0" width="249" height="120"/>
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Mdt-Uh-ZUW">
                                                 <rect key="frame" x="-2" y="0.0" width="253" height="31"/>
                                                 <connections>
-                                                    <action selector="sliderMoved" destination="BYZ-38-t0r" eventType="valueChanged" id="Qd9-yB-pn0"/>
+                                                    <action selector="sliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="px8-dH-Mgl"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dru-EW-YNx">
                                                 <rect key="frame" x="-2" y="45" width="253" height="31"/>
                                                 <connections>
-                                                    <action selector="sliderMoved" destination="BYZ-38-t0r" eventType="valueChanged" id="wXg-Mo-w6i"/>
+                                                    <action selector="sliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="kwO-7v-LKx"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="x4E-Fd-2f4">
                                                 <rect key="frame" x="-2" y="90" width="253" height="31"/>
                                                 <connections>
-                                                    <action selector="sliderMoved" destination="BYZ-38-t0r" eventType="valueChanged" id="rKX-1B-Wi9"/>
+                                                    <action selector="sliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="cUD-5r-haM"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Mdt-Uh-ZUW" secondAttribute="trailing" id="3EE-Q9-Akf"/>
-                                            <constraint firstAttribute="trailing" secondItem="dru-EW-YNx" secondAttribute="trailing" id="ZkO-oB-wdy"/>
-                                            <constraint firstItem="dru-EW-YNx" firstAttribute="leading" secondItem="ImL-yo-W2w" secondAttribute="leading" id="g4o-vm-XoV"/>
-                                            <constraint firstItem="Mdt-Uh-ZUW" firstAttribute="leading" secondItem="ImL-yo-W2w" secondAttribute="leading" id="gTu-Ud-yb5"/>
-                                            <constraint firstAttribute="trailing" secondItem="x4E-Fd-2f4" secondAttribute="trailing" id="hIx-Eh-sR6"/>
-                                            <constraint firstItem="x4E-Fd-2f4" firstAttribute="leading" secondItem="ImL-yo-W2w" secondAttribute="leading" id="wNH-TJ-sel"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                             </stackView>
@@ -122,16 +114,28 @@
                                     <action selector="resetToStarterSetting" destination="BYZ-38-t0r" eventType="touchUpInside" id="A8R-XS-hnw"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find Your Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="q4Z-JO-Vec">
+                                <rect key="frame" x="52" y="84" width="310" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="q4Z-JO-Vec" secondAttribute="height" multiplier="311:58" id="TgJ-2v-ocV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SnellRoundhand-Black" family="Snell Roundhand" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.0017075952577539574" green="0.2285049205125855" blue="0.79829986886879833" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jFi-hf-EqB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="3z8-5X-pak"/>
                             <constraint firstAttribute="trailing" secondItem="3iJ-CR-x4T" secondAttribute="trailing" constant="20" id="5ze-gD-ILo"/>
                             <constraint firstItem="9K4-ea-QH1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="61Z-h0-uvZ"/>
+                            <constraint firstItem="q4Z-JO-Vec" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7bY-h1-l55"/>
                             <constraint firstItem="3iJ-CR-x4T" firstAttribute="top" secondItem="jFi-hf-EqB" secondAttribute="bottom" constant="100" id="8Bu-70-bf5"/>
+                            <constraint firstItem="q4Z-JO-Vec" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="155:448" id="AVb-UU-Tl9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9K4-ea-QH1" secondAttribute="bottom" constant="30" id="GPu-VF-uXe"/>
                             <constraint firstItem="9K4-ea-QH1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="25:112" id="Gyt-OP-hT5"/>
+                            <constraint firstItem="q4Z-JO-Vec" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="QDN-kR-c8Y"/>
+                            <constraint firstItem="jFi-hf-EqB" firstAttribute="top" secondItem="q4Z-JO-Vec" secondAttribute="bottom" constant="15" id="bNC-Dc-HKm"/>
                             <constraint firstItem="jFi-hf-EqB" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="81:224" id="dJ7-e0-Jvo"/>
                             <constraint firstItem="3iJ-CR-x4T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="f7g-XE-QJi"/>
                             <constraint firstItem="jFi-hf-EqB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ozm-sF-Lrd"/>
@@ -150,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.22429906542056" y="81.641468682505405"/>
+            <point key="canvasLocation" x="17.39130434782609" y="81.026785714285708"/>
         </scene>
     </scenes>
     <resources>
