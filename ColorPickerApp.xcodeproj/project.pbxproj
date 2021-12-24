@@ -60,17 +60,41 @@
 		D796250E27633703004AA17F /* ColorPickerApp */ = {
 			isa = PBXGroup;
 			children = (
-				D796250F27633703004AA17F /* AppDelegate.swift */,
-				D796251127633703004AA17F /* SceneDelegate.swift */,
-				D796251327633703004AA17F /* EditColorViewController.swift */,
+				D7BAF4BD2776776A0005BB9F /* SupportingFiles */,
+				D7BAF4BE2776777C0005BB9F /* ViewControllers */,
+				D7BAF4BC277677530005BB9F /* Storyboards */,
 				D7AA9252277513D10027D07B /* Extensions.swift */,
-				D7AA925027750E450027D07B /* ChosenColorViewController.swift */,
-				D796251527633703004AA17F /* Main.storyboard */,
 				D796251827633706004AA17F /* Assets.xcassets */,
-				D796251A27633706004AA17F /* LaunchScreen.storyboard */,
-				D796251D27633706004AA17F /* Info.plist */,
 			);
 			path = ColorPickerApp;
+			sourceTree = "<group>";
+		};
+		D7BAF4BC277677530005BB9F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				D796251527633703004AA17F /* Main.storyboard */,
+				D796251A27633706004AA17F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D7BAF4BD2776776A0005BB9F /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D796250F27633703004AA17F /* AppDelegate.swift */,
+				D796251127633703004AA17F /* SceneDelegate.swift */,
+				D796251D27633706004AA17F /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		D7BAF4BE2776777C0005BB9F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D796251327633703004AA17F /* EditColorViewController.swift */,
+				D7AA925027750E450027D07B /* ChosenColorViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,12 +323,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AUP52MS6LU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ColorPickerApp/Info.plist;
+				INFOPLIST_FILE = ColorPickerApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -314,7 +339,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -327,12 +352,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AUP52MS6LU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ColorPickerApp/Info.plist;
+				INFOPLIST_FILE = ColorPickerApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -342,7 +368,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
