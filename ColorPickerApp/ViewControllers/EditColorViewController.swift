@@ -145,7 +145,7 @@ extension EditColorViewController {
         case greenValueTF:
             textField.text = greenValueLabel.text
         default:
-            textField.text = blueValueTF.text
+            textField.text = blueValueLabel.text
         }
     }
     
