@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+
+class EditColorViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var configColorContainerView: UIStackView!
@@ -27,12 +28,18 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var doneButton: UIButton!
     
-    // to store the current active textfield
-    var activeTextField : UITextField? = nil
+    // MARK: Properties
+    var delegate: EditColorViewControllerDelegate!
+    
+    var redValue: Float?
+    var greenValue: Float?
+    var blueValue: Float?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.isHidden = true
         
         pickedColorView.layer.cornerRadius = 20
         setSliders()
@@ -44,12 +51,6 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Override methods
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let showColorVC = segue.destination as! ChosenColorViewController
-        showColorVC.color = pickedColorView.backgroundColor
-    }
-        
     // Hides keyboard by touching on screen
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super .touchesBegan(touches, with: event)
@@ -59,18 +60,18 @@ class ViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func sliderMoved(_ sender: UISlider) {
         
-        let value = roundf(sender.value * 100) / 100
+        let value = String(format: "%.2f", sender.value)
         
         switch sender {
         case redColorSlider:
-            redValueLabel.text = String(value)
-            redValueTF.text = String(value)
+            redValueLabel.text = value
+            redValueTF.text = value
         case greenColorSlider:
-            greenValueLabel.text = String(value)
-            greenValueTF.text = String(value)
+            greenValueLabel.text = value
+            greenValueTF.text = value
         default:
-            blueValueLabel.text = String(value)
-            blueValueTF.text = String(value)
+            blueValueLabel.text = value
+            blueValueTF.text = value
         }
         
         updateColorView(red: redColorSlider.value,
@@ -78,7 +79,16 @@ class ViewController: UIViewController {
                         blue: blueColorSlider.value)
     }
     
-    // MARK: - Pravite Methods
+    @IBAction func doneButtonPressed() {
+        if let pickedColor = pickedColorView.backgroundColor {
+            delegate.setViewBackgroundColor(color: pickedColor)
+        }
+        dismiss(animated: true)
+    }
+}
+
+// MARK: Private Methods
+extension EditColorViewController {
     private func updateColorView(red: Float, green: Float, blue: Float) {
         pickedColorView.backgroundColor = UIColor(red: CGFloat(red),
                                                   green: CGFloat(green),
@@ -106,6 +116,10 @@ class ViewController: UIViewController {
     }
     
     private func setSliders() {
+        redColorSlider.value = redValue ?? 0
+        greenColorSlider.value = greenValue ?? 0
+        blueColorSlider.value = blueValue ?? 0
+        
         redColorSlider.minimumTrackTintColor = .red
         greenColorSlider.minimumTrackTintColor = .green
         blueColorSlider.minimumTrackTintColor = .systemBlue
@@ -113,11 +127,15 @@ class ViewController: UIViewController {
         setSliderSettings(slider: redColorSlider, label: redValueLabel, value: redColorSlider.value)
         setSliderSettings(slider: greenColorSlider, label: greenValueLabel, value: greenColorSlider.value)
         setSliderSettings(slider: blueColorSlider, label: blueValueLabel, value: blueColorSlider.value)
+        
+        updateColorView(red: redColorSlider.value,
+                        green: greenColorSlider.value,
+                        blue: blueColorSlider.value)
     }
     
     private func setSliderSettings(slider: UISlider, label: UILabel, value: Float) {
         slider.value = value
-        label.text = String(value)
+        label.text = String(format: "%.2f", value)
     }
     
     private func setTextFieldToPreviousValue(_ textField: UITextField) {
@@ -150,7 +168,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: TextFieldDelegate
-extension ViewController: UITextFieldDelegate {
+extension EditColorViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         // if empty
         guard textField.text != nil, textField.text != "" else {
@@ -172,21 +190,13 @@ extension ViewController: UITextFieldDelegate {
             return
         }
         
-        
-        textField.text = String(round(textFieldValue * 100) / 100)
+        textField.text = String(format: "%.2f", textFieldValue)
         setValidValues(textField)
-        
-        activeTextField = nil
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        // set the activeTextField to the selected textfield
-        activeTextField = textField
     }
 }
 
 // MARK: Keyboard
-extension ViewController {
+extension EditColorViewController {
     
     @objc func keyboardWillBeShown(_ notification: NSNotification) {
         // continue only if frame is not up already
@@ -195,22 +205,13 @@ extension ViewController {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
                                   as? NSValue)?.cgRectValue else { return }
         
-        var shouldMoveViewUp = false
+        let topOfKeyboard = keyboardSize.minY
+        let bottomOfContainerView = configColorContainerView.convert(configColorContainerView.bounds, to: view).maxY;
+        let spaceFromBottomToContainer = view.frame.maxY - bottomOfContainerView
         
-        // if active text field is not nil
-        if let activeTextField = activeTextField {
-            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: view).maxY;
-            
-            let topOfKeyboard = view.frame.height - keyboardSize.height
-            
-            // if the bottom of Textfield is below the top of keyboard, move up
-            if bottomOfTextField > topOfKeyboard {
-                shouldMoveViewUp = true
-            }
-        }
-        
-        if shouldMoveViewUp {
-            view.frame.origin.y = 0 - keyboardSize.height
+        // if the bottom of ContainerView is below the top of keyboard, move up
+        if bottomOfContainerView > topOfKeyboard {
+            view.frame.origin.y = 0 - (keyboardSize.height - spaceFromBottomToContainer + 15)
         }
     }
     
@@ -230,7 +231,7 @@ extension ViewController {
 }
 
 // MARK: Alerts
-extension ViewController {
+extension EditColorViewController {
     private func invalidInputAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
