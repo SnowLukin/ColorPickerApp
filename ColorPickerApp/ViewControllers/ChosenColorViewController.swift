@@ -31,16 +31,9 @@ class ChosenColorViewController: UIViewController {
         guard let editNavVC = segue.destination as? UINavigationController else { return }
         guard let editColorVC = editNavVC.topViewController as? EditColorViewController else { return }
         
-        // get rgb values to pass to EditViewController
+        // get color to pass to EditViewController
         // in order to start editing from the color we were in
-        var red: CGFloat = 0
-        var green: CGFloat = 0
-        var blue: CGFloat = 0
-        view.backgroundColor?.getRed(&red, green: &green, blue: &blue, alpha: nil)
-        
-        editColorVC.redValue = Float(red)
-        editColorVC.greenValue = Float(green)
-        editColorVC.blueValue = Float(blue)
+        editColorVC.color = view.backgroundColor
         
         editColorVC.delegate = self
     }

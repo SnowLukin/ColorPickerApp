@@ -31,9 +31,7 @@ class EditColorViewController: UIViewController {
     // MARK: Properties
     var delegate: EditColorViewControllerDelegate!
     
-    var redValue: Float?
-    var greenValue: Float?
-    var blueValue: Float?
+    var color: UIColor?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -116,25 +114,30 @@ extension EditColorViewController {
     }
     
     private func setSliders() {
-        redColorSlider.value = redValue ?? 0
-        greenColorSlider.value = greenValue ?? 0
-        blueColorSlider.value = blueValue ?? 0
+        
+        let ciColor = CIColor(color: color ?? .white)
+        redColorSlider.value = Float(ciColor.red)
+        greenColorSlider.value = Float(ciColor.green)
+        blueColorSlider.value = Float(ciColor.blue)
         
         redColorSlider.minimumTrackTintColor = .red
         greenColorSlider.minimumTrackTintColor = .green
         blueColorSlider.minimumTrackTintColor = .systemBlue
         
-        setSliderSettings(slider: redColorSlider, label: redValueLabel, value: redColorSlider.value)
-        setSliderSettings(slider: greenColorSlider, label: greenValueLabel, value: greenColorSlider.value)
-        setSliderSettings(slider: blueColorSlider, label: blueValueLabel, value: blueColorSlider.value)
+        setLabel(label: redValueLabel, value: redColorSlider.value)
+        setLabel(label: greenValueLabel, value: greenColorSlider.value)
+        setLabel(label: blueValueLabel, value: blueColorSlider.value)
         
         updateColorView(red: redColorSlider.value,
                         green: greenColorSlider.value,
                         blue: blueColorSlider.value)
     }
     
-    private func setSliderSettings(slider: UISlider, label: UILabel, value: Float) {
+    private func setSliderSettings(slider: UISlider, value: Float) {
         slider.value = value
+    }
+    
+    private func setLabel(label: UILabel, value: Float) {
         label.text = String(format: "%.2f", value)
     }
     
@@ -152,17 +155,14 @@ extension EditColorViewController {
     private func setValidValues(_ textField: UITextField) {
         switch textField {
         case redValueTF:
-            setSliderSettings(slider: redColorSlider,
-                              label: redValueLabel,
-                              value: Float(textField.text!)!)
+            redColorSlider.value = Float(textField.text ?? "") ?? 0
+            setLabel(label: redValueLabel, value: redColorSlider.value)
         case greenValueTF:
-            setSliderSettings(slider: greenColorSlider,
-                              label: greenValueLabel,
-                              value: Float(textField.text!)!)
+            greenColorSlider.value = Float(textField.text ?? "") ?? 0
+            setLabel(label: greenValueLabel, value: greenColorSlider.value)
         default:
-            setSliderSettings(slider: blueColorSlider,
-                              label: blueValueLabel,
-                              value: Float(textField.text!)!)
+            blueColorSlider.value = Float(textField.text ?? "") ?? 0
+            setLabel(label: blueValueLabel, value: blueColorSlider.value)
         }
     }
 }
