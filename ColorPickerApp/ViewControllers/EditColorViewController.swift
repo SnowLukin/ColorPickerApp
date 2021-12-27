@@ -43,7 +43,6 @@ class EditColorViewController: UIViewController {
         setSliders()
         setTextFields()
         setButton()
-        
         // move view when keyboard change frame
         getKeyboardStatus()
     }
@@ -178,20 +177,30 @@ extension EditColorViewController: UITextFieldDelegate {
         
         // if not numbers
         guard let textFieldValue = Double(textField.text!) else {
-            invalidInputAlert(title: "Error", message: "Invalid format. Please try again.")
+            invalidInputAlert(title: "Error",
+                              message: "Invalid format. Please try again.")
             setTextFieldToPreviousValue(textField)
             return
         }
         
         // if more than 1 or less than 0
         guard textFieldValue >= 0, textFieldValue <= 1 else {
-            invalidInputAlert(title: "Error", message: "RGB colors' values can only be in range from 0 to 1. Please try again.")
+            invalidInputAlert(title: "Error",
+                              message: "RGB colors' values can only be in range from 0 to 1. Please try again.")
             setTextFieldToPreviousValue(textField)
             return
         }
         
         textField.text = String(format: "%.2f", textFieldValue)
         setValidValues(textField)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == "," {
+            textField.text = textField.text! + "."
+            return false
+        }
+        return true
     }
 }
 
@@ -224,9 +233,13 @@ extension EditColorViewController {
     private func getKeyboardStatus() {
         
         // Listen for keyboard events
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(_:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
 }
 
